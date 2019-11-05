@@ -15,7 +15,10 @@ public class UsageTest {
     private String firstMessage = "Тело письма Selenide";
     private String secondMessage = "Выполнено";
     private String attachName = "mdm система.txt";
+    private LoginPage loginPage = new LoginPage();
     private CloudForm cloudForm;
+    int countOfMessages = 6;
+
     @Before
     public void Property() {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_78.0.3904.70.exe");
@@ -25,13 +28,11 @@ public class UsageTest {
 
     @Test
     public void FirstMailAuthorization() {
-        LoginPage loginPage = new LoginPage();
         loginPage.
                 email(firstLogin).
                 password(firstPassword);
         InBoxPage inBoxPage = loginPage.assertLogin();
-        int countOfMessages = 6;
-        while(countOfMessages >= 0){
+        while(countOfMessages > 0){
             MessageForm messageForm = inBoxPage.openMessageForm();
             messageForm.
                     destination(secondLogin).
