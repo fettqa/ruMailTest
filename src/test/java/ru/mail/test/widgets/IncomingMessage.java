@@ -13,7 +13,7 @@ public class IncomingMessage {
     }
 
     public IncomingMessage assertBody(String message) {
-        incomingMessages.$("div[class$=js-readmsg-msg]").$(withText(message));
+        incomingMessages.$("div[class$=js-readmsg-msg] div[data-signature-widget=container]").$(withText(message));
         return this;
     }
 
